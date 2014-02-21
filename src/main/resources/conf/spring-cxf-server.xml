@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+           
+	<import resource="classpath:META-INF/cxf/cxf.xml"/>
+<!-- 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/> -->
+	
+	<!--  多种发布方式都可以
+	<bean id="noInterfaceServiceImpl"
+		class="com.wds.cxf.spring.server.impl.NoInterfaceServiceImpl"/>
+	<jaxws:endpoint address="/noInterfaceService" 
+		implementor="#noInterfaceServiceImpl"
+	></jaxws:endpoint>
+	-->
+	<jaxws:endpoint
+		id="noInterfaceService" address="/noInterfaceService" 
+		implementor="com.wds.cxf.spring.server.impl.NoInterfaceServiceImpl"
+	></jaxws:endpoint>
+	
+	
+	<jaxws:server address="/userService2">
+		<jaxws:serviceBean>
+			<bean class="com.wds.cxf.spring.server.impl.UserServiceImpl"></bean>
+		</jaxws:serviceBean>
+	</jaxws:server>
+	
+	<jaxws:server address="/userService" serviceClass="com.wds.cxf.spring.server.IUserService">
+		<jaxws:serviceBean>
+			<bean class="com.wds.cxf.spring.server.impl.UserServiceImpl"></bean>
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+			<bean class="com.wds.cxf.spring.server.interceptor.HeaderHandlerInterceptor"></bean>
+		</jaxws:inInterceptors>
+		
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
+		</jaxws:outInterceptors>
+	</jaxws:server>
+	
+	<jaxws:server address="/SecurityService" serviceClass="com.wds.cxf.spring.server.ISecurityService">
+		<jaxws:serviceBean>
+			<bean class="com.wds.cxf.spring.server.impl.SecurityServiceImpl"></bean>
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
+			<bean class="com.wds.cxf.spring.server.interceptor.HeaderHandlerInterceptor"></bean>
+		</jaxws:inInterceptors>
+		
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
+		</jaxws:outInterceptors>
+	</jaxws:server>
+</beans>
