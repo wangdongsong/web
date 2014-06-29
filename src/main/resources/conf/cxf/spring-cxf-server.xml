@@ -9,6 +9,7 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml"/>
 <!-- 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/> -->
 	
+	<!-- 服务一，无客户端 -->
 	<!--  多种发布方式都可以
 	<bean id="noInterfaceServiceImpl"
 		class="com.wds.cxf.spring.server.impl.NoInterfaceServiceImpl"/>
@@ -21,13 +22,14 @@
 		implementor="com.wds.cxf.spring.server.impl.NoInterfaceServiceImpl"
 	></jaxws:endpoint>
 	
-	
+	<!-- 服务2：有客户端，不带拦截器 -->
 	<jaxws:server address="/userService2">
 		<jaxws:serviceBean>
 			<bean class="com.wds.cxf.spring.server.impl.UserServiceImpl"></bean>
 		</jaxws:serviceBean>
 	</jaxws:server>
 	
+	<!-- 服务3：有客户端，带拦截器 ，与服务2是相同的代码，区别之处就是这个服务有拦截器-->
 	<jaxws:server address="/userService" serviceClass="com.wds.cxf.spring.server.IUserService">
 		<jaxws:serviceBean>
 			<bean class="com.wds.cxf.spring.server.impl.UserServiceImpl"></bean>
@@ -42,6 +44,7 @@
 		</jaxws:outInterceptors>
 	</jaxws:server>
 	
+	<!-- 服务4：有拦截器，Map类型的数据结构 -->
 	<jaxws:server address="/SecurityService" serviceClass="com.wds.cxf.spring.server.ISecurityService">
 		<jaxws:serviceBean>
 			<bean class="com.wds.cxf.spring.server.impl.SecurityServiceImpl"></bean>
@@ -50,7 +53,6 @@
 			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"></bean>
 			<bean class="com.wds.cxf.spring.server.interceptor.HeaderHandlerInterceptor"></bean>
 		</jaxws:inInterceptors>
-		
 		<jaxws:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"></bean>
 		</jaxws:outInterceptors>

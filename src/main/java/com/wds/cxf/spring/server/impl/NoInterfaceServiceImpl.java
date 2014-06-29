@@ -8,5 +8,4 @@ public class NoInterfaceServiceImpl {
 	public String test(){
 		return "Hello, this is test method";
 	}
-	
 }

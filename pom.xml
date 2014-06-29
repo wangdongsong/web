@@ -24,6 +24,11 @@
 	</properties>
 	<dependencies>
 		<dependency>
+  			<groupId>org.codehaus.jackson</groupId>
+ 			<artifactId>jackson-jaxrs</artifactId>
+  			<version>1.9.0</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
@@ -45,7 +50,7 @@
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-		<!-- servlet -->
+		<!-- servlet 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -62,7 +67,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${javax.servlet.jstl}</version>
-		</dependency>
+		</dependency>-->
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -242,6 +247,11 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-pool</artifactId>
+			<version>${activemq.version}</version>
+		</dependency>
+		<dependency>
 	      <groupId>org.apache.geronimo.specs</groupId>
 	      <artifactId>geronimo-jms_1.1_spec</artifactId>
 	      <version>1.1</version>
@@ -258,6 +268,11 @@
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
             <version>${cxf.version}</version>
         </dependency>
+         <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
@@ -267,6 +282,24 @@
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-core</artifactId>
             <version>${cxf.version}</version>
+        </dependency>
+        
+        <dependency>
+		  <groupId>org.apache.cxf</groupId>
+		  <artifactId>cxf-rt-rs-client</artifactId>
+		  <version>${cxf.version}</version>
+		</dependency>
+        
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
         </dependency>
 	</dependencies>
 	<build>
